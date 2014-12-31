@@ -1,0 +1,44 @@
+
+          <%= form_for @event, :html => { :class => "form-horizontal" }  do |f| %>
+
+            <%= f.label :day, "When are you riding?", class: "col-sm-3 control-label" %>
+
+              <%= f.select :day, options_for_select([['Today', 'Today'],['Tomorrow', 'Tomorrow']]), :data => { :style => "btn-white", :size => "5" } %>
+
+            <%= f.label :area, "Where are you riding?", class: "col-sm-3 control-label" %>
+
+              <%= f.text_field :area, class: "form-control", placeholder: "e.g. Pleney" %>
+
+            <%= f.label :level, "Level"  %>
+
+                <%= f.radio_button :level, "Beginner" %> Beginner (Greens and Blues)
+                <br />
+                <%= f.radio_button :level, "Intermediate" %> Intermediate (Reds)
+                <br />
+                <%= f.radio_button :level, "Advanced" %> Advanced (Blacks)
+                <br />
+                <%= f.radio_button :level, "Nuts" %> Nuts (Anywhere with Snow)
+
+            <%= f.label :plan, "Plan", class: "col-sm-3 control-label" %>
+
+                <%= f.radio_button :plan, "Piste" %> Piste
+                <br />
+                <%= f.radio_button :plan, "Park" %> Park
+                <br />
+                <%= f.radio_button :plan, "Off-Piste" %> Off-Piste
+                <br />
+                <%= f.radio_button :plan, "All-mountain" %> All-mountain
+
+            <%= f.label :meeting, "Meet time", class: "col-sm-3 control-label" %>
+
+              <%= f.time_select :meeting, class: "selectpicker" %>
+
+            <%= f.label :space, "Max group size", class: "col-sm-3 control-label" %>
+
+              <%= f.select :space, options_for_select([['One', 1],['Two', 2],
+              ['Three', 3], ['Four', 4], ['Five', 5], ['Six', 6],
+              ['Seven', 7], ['Eight', 8]]) %>
+
+              <%= f.submit "Submit", class: "btn btn-primary" %>
+
+          <% end %>

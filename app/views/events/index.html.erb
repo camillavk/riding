@@ -1,0 +1,67 @@
+<%= link_to 'Add', new_event_path %>
+
+<table class="table v-middle">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Area</th>
+      <th>Level</th>
+      <th>Plan</th>
+      <th>Meeting</th>
+      <th>Space</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @eventsToday.any? %>
+    <% @eventsToday.each do |event| %>
+    <tr>
+      <td>
+        <% unless event.user.nil? %>
+        <%= event.user.name %>
+        <% end %>
+      </td>
+      <td><%= event.area %></td>
+      <td><%= event.level %></td>
+      <td><%= event.plan %></td>
+      <td><%= event.meeting.strftime('%H:%M') %></td>
+      <td><%= event.space %></td>
+      <td><%= link_to "Join", edit_event_path(event) %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<table class="table v-middle">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Area</th>
+      <th>Level</th>
+      <th>Plan</th>
+      <th>Meeting</th>
+      <th>Space</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @eventsTomorrow.any? %>
+    <% @eventsTomorrow.each do |event| %>
+    <tr>
+      <td>
+        <% unless event.user.nil? %>
+        <%= event.user.name %>
+        <% end %>
+      </td>
+      <td><%= event.area %></td>
+      <td><%= event.level %></td>
+      <td><%= event.plan %></td>
+      <td><%= event.meeting.strftime('%H:%M') %></td>
+      <td><%= event.space %></td>
+      <td><%= link_to "Join", edit_event_path(event) %></td>
+    </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
