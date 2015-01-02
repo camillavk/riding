@@ -6,27 +6,37 @@ include ApplicationHelper
 describe 'creating an event' do
   before do
     visit '/'
-    click_link 'Sign up'
-    fill_in('Email', with: 'test@example.com')
-    fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
-    click_button 'Sign up'
+    sign_up_one
+    create_event
   end
 
   it 'prompts the user to fill in a form, then displays the new event' do
-    click_link 'Add'
-    select('Today', :from => 'When are you riding?')
-    fill_in 'Where are you riding?', with: 'Pleney'
-    choose 'event_level_beginner'
-    choose 'event_plan_piste'
-    select_time(Time.now, :from => 'event_meeting')
-    select('Three', :from => 'Max group size')
-    click_button 'Submit'
     expect(page).to have_content 'Pleney'
   end
+
+  it 'displays the name of the creator' do
+    expect(page).to have_content 'testOne'
+  end
+
+  it 'displays the event level' do
+    expect(page).to have_content 'Beginner'
+  end
+
+  it 'displays the event plan' do
+    expect(page).to have_content 'Piste'
+  end
+
+  it 'displays the event group size' do
+    expect(page).to have_content '3'
+  end
+
+  it "it doesn't show the creator a 'Join' button" do
+    expect(page).not_to have_link 'Join'
+  end
+
 end
 
-describe 'joining an event' do
+describe 'to join an event' do
   before do
     sign_up_one
     create_event
@@ -34,7 +44,11 @@ describe 'joining an event' do
     sign_up_two
   end
 
-  it 'asks the user to confirm they want to join the event' do
+  it 'it shows a join button on the events page' do
+    expect(page).to have_link 'Join'
+  end
+
+  it 'it asks the user to confirm they want to join the event' do
     click_link 'Join'
     expect(page).to have_content "Clicking 'join' will send your number to the event organizer"
   end

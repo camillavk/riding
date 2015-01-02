@@ -26,7 +26,9 @@
       <td><%= event.plan %></td>
       <td><%= event.meeting.strftime('%H:%M') %></td>
       <td><%= event.space %></td>
-      <td><%= link_to "Join", edit_event_path(event) %></td>
+      <td><% if event.user != current_user %>
+        <%= link_to "Join", edit_event_path(event) %>
+        <% end %></td>
     </tr>
     <% end %>
     <% end %>
@@ -59,7 +61,9 @@
       <td><%= event.plan %></td>
       <td><%= event.meeting.strftime('%H:%M') %></td>
       <td><%= event.space %></td>
-      <td><%= link_to "Join", edit_event_path(event) %></td>
+      <td><% if event.user != current_user %>
+        <%= link_to "Join", edit_event_path(event) %>
+        <% end %></td>
     </tr>
     <% end %>
     <% end %>
