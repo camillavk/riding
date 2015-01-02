@@ -7,13 +7,16 @@ class User < ActiveRecord::Base
 
   has_many :events
 
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
          def self.from_omniauth(auth)
            where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
              user.email = auth.info.email
              user.password = Devise.friendly_token[0,20]
              # Need to add name and image to user model in devise first;
              user.name = auth.info.name
-             # user.image = auth.info.image
+             user.image = access_token.info.image
            end
          end
 
@@ -22,6 +25,8 @@ class User < ActiveRecord::Base
              if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
                user.email = data["email"] if user.email.blank?
                user.name = data["name"] if user.name.blank?
+               user.image = data["image"] if user.image.blank?
+              #  user.image = access_token.info.image
              end
            end
          end
