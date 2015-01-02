@@ -47,6 +47,7 @@ end
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'paperclip'
+gem 'aws-sdk'
 
 group :test do
   gem 'rspec-rails'
