@@ -53,6 +53,16 @@ context "signing in" do
     expect(current_path).to eq '/users/edit'
   end
 
+  it 'redirects them to the homepage once they have added in more details' do
+    visit '/'
+    sign_up_one
+    fill_in 'Level', with: 'Beginner'
+    fill_in 'Choice', with: 'Board'
+    fill_in 'Number', with: '3453'
+    click_button 'Update'
+    expect(current_path).to eq '/'
+  end
+
 
 
 end
