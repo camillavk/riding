@@ -8,6 +8,7 @@ describe 'creating an event' do
     visit '/'
     sign_up_one
     create_event
+    visit '/'
   end
 
   it 'prompts the user to fill in a form, then displays the new event' do
@@ -42,6 +43,7 @@ describe 'to join an event' do
     create_event
     sign_out
     sign_up_two
+    visit '/'
   end
 
   it 'it shows a join button on the events page' do

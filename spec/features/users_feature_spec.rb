@@ -1,4 +1,7 @@
 require 'rails_helper'
+require_relative 'helpers/application'
+
+include ApplicationHelper
 
 context "user not signed in and on the homepage" do
   it "should see a 'sign in' link and a 'sign up' link" do
@@ -44,6 +47,12 @@ context "signing in" do
     expect(page).to have_content 'Name'
   end
 
-  
+  it 'takes the user to a second page to add more details' do
+    visit '/'
+    sign_up_one
+    expect(current_path).to eq '/users/edit'
+  end
+
+
 
 end

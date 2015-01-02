@@ -26,6 +26,7 @@ module ApplicationHelper
   end
 
   def create_event
+    visit '/'
     click_link 'Add'
     select('Today', :from => 'When are you riding?')
     fill_in 'Where are you riding?', with: 'Pleney'
