@@ -49,6 +49,8 @@ gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'aws-sdk'
 
+gem 'mandrill-api'
+
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
