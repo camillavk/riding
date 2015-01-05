@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   has_many :events
 
+  has_many :attending_events
+  has_many :attending, through: :attending_events, source: :event
+
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 

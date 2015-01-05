@@ -28,7 +28,20 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  
+  def attending
+    @event = Event.find(params[:id])
+    type = params[:type]
+    if type == "attending"
+      current_user.attending << @event
+      redirect_to :back, notice: "You've joined the group. Your number will be sent to #{@event.user.name}"
+
+    else type == "unattending"
+      current_user.attending.delete(@event)
+      redirect_to :back, notice: "You've removed yourself from the group"
+    end
+  end
+
+
 
 end
 

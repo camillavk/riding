@@ -52,7 +52,12 @@ describe 'to join an event' do
 
   it 'it asks the user to confirm they want to join the event' do
     click_link 'Join'
-    expect(page).to have_content "Clicking 'join' will send your number to the event organizer"
+    expect(page).to have_content "You've joined the group. Your number will be sent"
+  end
+
+  it 'it adds the user to the event' do
+    click_link 'Join'
+    expect(AttendingEvent.count).to eq(1)
   end
 
 end
