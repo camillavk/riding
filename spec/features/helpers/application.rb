@@ -20,6 +20,26 @@ module ApplicationHelper
     click_button 'Sign up'
   end
 
+  def sign_up_three
+    visit '/'
+    click_link 'Sign up'
+    fill_in('Name', with: 'testThree')
+    fill_in('Email', with: 'testThree@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    click_button 'Sign up'
+  end
+
+  def sign_up_four
+    visit '/'
+    click_link 'Sign up'
+    fill_in('Name', with: 'testFour')
+    fill_in('Email', with: 'testFour@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    click_button 'Sign up'
+  end
+
   def sign_out
     visit '/'
     click_link 'Sign out'
@@ -33,7 +53,7 @@ module ApplicationHelper
     choose 'event_level_beginner'
     choose 'event_plan_piste'
     select_time(Time.now, :from => 'event_meeting')
-    select('Three', :from => 'Max group size')
+    select('Two', :from => 'Max group size')
     click_button 'Submit'
     expect(page).to have_content 'Pleney'
   end

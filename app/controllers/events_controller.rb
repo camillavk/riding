@@ -31,8 +31,10 @@ class EventsController < ApplicationController
   def attending
     @event = Event.find(params[:id])
     type = params[:type]
-    if type == "attending"
+    if type == "attending" && @event.space != 0
       current_user.attending << @event
+      @event.space = @event.space - 1
+      @event.save
       redirect_to :back, notice: "You've joined the group. Your number will be sent to #{@event.user.name}"
 
     else type == "unattending"

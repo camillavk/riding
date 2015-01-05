@@ -27,7 +27,7 @@
       <td><%= event.plan %></td>
       <td><%= event.meeting.strftime('%H:%M') %></td>
       <td><%= event.space %></td>
-      <td><% if event.user != current_user %>
+      <td><% if event.user != current_user && event.space != 0 %>
         <%= link_to "Join", attending_event_path(event, type: "attending"), method: :put %>
         <% end %></td>
     </tr>

@@ -28,7 +28,7 @@ describe 'creating an event' do
   end
 
   it 'displays the event group size' do
-    expect(page).to have_content '3'
+    expect(page).to have_content '2'
   end
 
   it "it doesn't show the creator a 'Join' button" do
@@ -58,6 +58,18 @@ describe 'to join an event' do
   it 'it adds the user to the event' do
     click_link 'Join'
     expect(AttendingEvent.count).to eq(1)
+  end
+
+  it 'is only possible if there is still space left' do
+    click_link 'Join'
+    sign_out
+    sign_up_three
+    visit '/'
+    click_link 'Join'
+    sign_out
+    sign_up_four
+    visit '/'
+    expect(page).not_to have_link 'Join'
   end
 
 end
