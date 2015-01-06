@@ -60,7 +60,7 @@ context "signing in" do
     fill_in 'Choice', with: 'Board'
     fill_in 'Number', with: '3453'
     click_button 'Update'
-    expect(current_path).to eq '/'
+    expect(current_path).to eq '/events'
   end
 
 
