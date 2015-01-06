@@ -51,6 +51,9 @@ gem 'aws-sdk'
 
 gem 'mandrill-api'
 
+gem 'figaro'
+
+
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
