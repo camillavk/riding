@@ -72,4 +72,9 @@ describe 'to join an event' do
     expect(page).not_to have_link 'Join'
   end
 
+  it 'removes the join button' do
+    click_link 'Join'
+    expect(page).not_to have_link 'Join'
+  end
+
 end
