@@ -1,26 +1,275 @@
 <!DOCTYPE html>
-<html>
+<html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l2" lang="en">
 <head>
-  <title>Riding</title>
+  <title>RidingToday</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
+  <!-- Wrapper required for sidebar transitions -->
+      <div class="st-container">
+
+          <!-- Fixed navbar -->
+          <div class="navbar navbar-main navbar-default navbar-fixed-top" role="navigation">
+              <div class="container-fluid">
+                  <div class="navbar-header">
+                      <a href="#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs"><i class="fa fa-comments"></i></a>
+                      <a class="navbar-brand navbar-brand-primary hidden-xs" href="/events">RidingToday</a>
+                  </div>
+                  <div class="collapse navbar-collapse" id="main-nav">
+                      <ul class="nav navbar-nav navbar-user">
+                          <!-- User -->
+                          <li>
+                              <a href="/events">
+                                  <% if user_signed_in? %>
+                                    <%= image_tag current_user.image.url(:thumb) %>
+                                    <%= current_user.name %>
+                                  <% else %>
+                                    <img src="images/thumbs/Eeyore.jpg" width="35" alt="   " class="img-circle" />
+                                  <% end %>
+                              </a>
+                          </li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right hidden-xs">
+                          <li class="pull-right">
+                            <div class="container-fluid">
+                              <div class="navbar-collapse collapse text-center" id="collapse-buttons">
+                                <% if user_signed_in? %>
+                                  <%= link_to "Sign out", destroy_user_session_path, class: "btn navbar-btn btn-primary", :method => :delete %>
+                                <% else %>
+                                  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn navbar-btn btn-primary" %>
+                                  <%= link_to "Sign up", new_user_registration_path, class: "btn navbar-btn btn-primary" %>
+                                  <%= link_to "Sign in", new_user_session_path, class: "btn navbar-btn btn-primary" %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+          <div class="sidebar left sidebar-size-2 sidebar-offset-0 sidebar-visible-desktop sidebar-visible-mobile sidebar-skin-dark" id="sidebar-menu" data-type="collapse">
+              <div class="sidebar-menu">
+                  <div data-scrollable>
+                      <ul>
+                          <li class="category">Navigation</li>
+                          <li class="hasSubmenu">
+                              <a href="/events"><i class="icon-ship-wheel"></i> <span>Who's riding?</span></a>
+                              <ul id="timeline">
+                                  <li><a href="/events"><i class="fa fa-circle-o"></i><span>View</span></a>
+                                  </li>
+                                  <li><a href="/events/new"><i class="fa fa-circle-o"></i><span>Add</span>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li class=""><a href="/events"></a>
+                          </li>
+                          <li class=""><a href="/events"></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <%= yield %>
+                  <!-- extra div for emulating position:fixed of the menu -->
+                  <div class="st-content-inner">
+                      <div class="container-fluid">
+                          <div class="footer">RidingToday &copy; Copyright Notice</div>
+                      </div>
+                  </div>
+                  <!-- /st-content-inner -->
+                  </div>
+              <!-- /st-content -->
+              </div>
+          <!-- /st-pusher -->
+          </div>
+      <!-- /st-container -->
+  <!-- Inline Script for colors and config objects; used by various external scripts; -->
+  <script>
+      var colors = {
+          "danger-color": "#e74c3c",
+          "success-color": "#81b53e",
+          "warning-color": "#f0ad4e",
+          "inverse-color": "#2c3e50",
+          "info-color": "#2d7cb5",
+          "default-color": "#6e7882",
+          "default-light-color": "#cfd9db",
+          "purple-color": "#9D8AC7",
+          "mustard-color": "#d4d171",
+          "lightred-color": "#e15258",
+          "body-bg": "#f6f6f6"
+      };
+      var config = {
+          "theme": "social-1",
+          "themes": [],
+          "dist": "dist/themes",
+          "skins": {
+              "docs": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  }
+              },
+              "admin": {
+                  "default": {
+                      "primary-color": "#3498db"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  }
+              },
+              "layout": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  }
+              },
+              "sidebar": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  }
+              },
+              "navbar": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  }
+              },
+              "color": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  }
+              },
+              "music": {
+                  "default": {
+                      "primary-color": "#3498db"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  }
+              },
+              "social-1": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  }
+              },
+              "social-2": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  },
+                  "default-nav-inverse": {
+                      "color-block": "#242424"
+                  }
+              },
+              "social-3": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  },
+                  "default-nav-inverse": {
+                      "color-block": "#242424"
+                  }
+              },
+              "learning": {
+                  "default": {
+                      "primary-color": "#16ae9f"
+                  },
+                  "orange": {
+                      "primary-color": "#e74c3c"
+                  },
+                  "blue": {
+                      "primary-color": "#4687ce"
+                  },
+                  "purple": {
+                      "primary-color": "#af86b9"
+                  },
+                  "brown": {
+                      "primary-color": "#c3a961"
+                  }
+              }
+          },
+          "vendor_css": ["app/icons/pictoicons/css/picto.css", "bower_components/bootstrap3-datepicker/css/datepicker.css", "bower_components/jquery-minicolors/jquery.minicolors.css", "bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css", "bower_components/highlightjs/styles/railscasts.css", "bower_components/jvectormap/jquery-jvectormap.css", "bower_components/owlcarousel/owl-carousel/owl.carousel.css", "bower_components/morrisjs/morris.css"],
+          "discover": {
+              "exclude": ["animated-climacons", "bridget", "bootstrap-sass", "bootstrap-rtl", "mocha", "modernizr", "requirejs", "jquery-ui-map", "jquery-ui"]
+          },
+          "debug": true
+      };
+  </script>
+
   
-  <% if user_signed_in? %>
-    <%= link_to "Sign out", destroy_user_session_path, class: "btn navbar-btn btn-primary", :method => :delete %>
-  <% else %>
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn navbar-btn btn-primary" %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn navbar-btn btn-primary" %>
-    <%= link_to "Sign in", new_user_session_path, class: "btn navbar-btn btn-primary" %>
-  <% end %>
-
-<%= yield %>
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
 
 </body>
 </html>

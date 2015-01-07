@@ -1,16 +1,25 @@
-
-          <%= form_for @event, :html => { :class => "form-horizontal" }  do |f| %>
-
+<div class="st-pusher" id="content">
+<div class="st-content-inner">
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= form_for @event, :html => { :class => "form-horizontal" }  do |f| %>
+          <div class="form-group">
             <%= f.label :day, "When are you riding?", class: "col-sm-3 control-label" %>
-
+            <div class="col-sm-9">
               <%= f.select :day, options_for_select([['Today', Date.today.to_s],['Tomorrow', (Date.today+1).to_s]]), :data => { :style => "btn-white", :size => "5" } %>
-
+            </div>
+          </div>
+          <div class="form-group">
             <%= f.label :area, "Where are you riding?", class: "col-sm-3 control-label" %>
-
+            <div class="col-sm-9">
               <%= f.text_field :area, class: "form-control", placeholder: "e.g. Pleney" %>
-
-            <%= f.label :level, "Level"  %>
-
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :level, "Level", class: "col-sm-3 control-label" %>
+            <div class="col-sm-9">
+                <div class="checkbox">
                 <%= f.radio_button :level, "Beginner" %> Beginner (Greens and Blues)
                 <br />
                 <%= f.radio_button :level, "Intermediate" %> Intermediate (Reds)
@@ -18,9 +27,13 @@
                 <%= f.radio_button :level, "Advanced" %> Advanced (Blacks)
                 <br />
                 <%= f.radio_button :level, "Nuts" %> Nuts (Anywhere with Snow)
-
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
             <%= f.label :plan, "Plan", class: "col-sm-3 control-label" %>
-
+            <div class="col-sm-9">
+                <div class="checkbox">
                 <%= f.radio_button :plan, "Piste" %> Piste
                 <br />
                 <%= f.radio_button :plan, "Park" %> Park
@@ -28,17 +41,32 @@
                 <%= f.radio_button :plan, "Off-Piste" %> Off-Piste
                 <br />
                 <%= f.radio_button :plan, "All-mountain" %> All-mountain
-
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
             <%= f.label :meeting, "Meet time", class: "col-sm-3 control-label" %>
-
+            <div class="col-sm-9">
               <%= f.time_select :meeting, class: "selectpicker" %>
-
+            </div>
+          </div>
+          <div class="form-group">
             <%= f.label :space, "Max group size", class: "col-sm-3 control-label" %>
-
+            <div class="col-sm-9">
               <%= f.select :space, options_for_select([['One', 1],['Two', 2],
               ['Three', 3], ['Four', 4], ['Five', 5], ['Six', 6],
-              ['Seven', 7], ['Eight', 8]]) %>
+              ['Seven', 7], ['Eight', 8]]),
+              :data => { :style => "btn-white", :size => "5" } %>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9">
+                <%= f.submit "Submit", class: "btn btn-primary" %>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-              <%= f.submit "Submit", class: "btn btn-primary" %>
-
-          <% end %>

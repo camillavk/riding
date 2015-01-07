@@ -1,75 +1,123 @@
-<%= link_to 'Add', new_event_path %>
+<div class="st-pusher" id="content">
+    <div class="st-content">
+        <!-- Tabbable Widget -->
+        <div class="tabbable tabs-primary">
+        <!-- Tabs -->
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#color-home" data-toggle="tab" id="today">Today</a>
+            </li>
+            <li>
+              <a href="#color-profile" data-toggle="tab" id="tomorrow">Tomorrow</a>
+            </li>
+          </ul>
+          <!-- // END Tabs -->
+          <!-- Panes -->
+          <div class="tab-content">
+            <div id="color-home" class="tab-pane active">
+              <div class="st-content-inner">
+                <div class="today">
+                  <div class="container-fluid">
+                    <div class="panel panel-default">
+                  </div>
+                  <!-- Progress table -->
+                  <div class="table-responsive">
+                  <table class="table v-middle">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Area</th>
+                        <th>Level</th>
+                        <th>Plan</th>
+                        <th>Meeting</th>
+                        <th>Space</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if @eventsToday.any? %>
+                      <% @eventsToday.each do |event| %>
+                      <tr>
+                        <td>
+                          <% unless event.user.nil? %>
+                          <%= image_tag event.user.image.url(:thumb) %>
+                          <%= event.user.name %>
+                          <% end %>
+                        </td>
+                        <td><%= event.area %></td>
+                        <td><%= event.level %></td>
+                        <td><%= event.plan %></td>
+                        <td><%= event.meeting.strftime('%H:%M') %></td>
+                        <td><%= event.space %></td>
+                        <td><% if event.user != current_user && event.space != 0 && user_signed_in? %>
+                            <% unless event.attendees.include?(current_user) %>
+                          <%= link_to "Join", attending_event_path(event, type: "attending"), class: "btn btn-primary btn-xs", method: :put %>
+                          <% end %>
+                          <% end %></td>
+                      </tr>
+                      <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div id="color-profile" class="tab-pane active">
+              <div class="st-content-inner">
+                <div class="tomorrow">
+                  <div class="container-fluid">
+                    <div class="panel panel-default">
+                    </div>
+                    <!-- Progress table -->
+                    <div class="table-responsive">
 
-<table class="table v-middle">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Level</th>
-      <th>Plan</th>
-      <th>Meeting</th>
-      <th>Space</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @eventsToday.any? %>
-    <% @eventsToday.each do |event| %>
-    <tr>
-      <td>
-        <% unless event.user.nil? %>
-        <%= image_tag event.user.image.url(:thumb) %>
-        <%= event.user.name %>
-        <% end %>
-      </td>
-      <td><%= event.area %></td>
-      <td><%= event.level %></td>
-      <td><%= event.plan %></td>
-      <td><%= event.meeting.strftime('%H:%M') %></td>
-      <td><%= event.space %></td>
-      <td><% if event.user != current_user && event.space != 0 && user_signed_in? %>
-          <% unless event.attendees.include?(current_user) %>
-        <%= link_to "Join", attending_event_path(event, type: "attending"), method: :put %>
-        <% end %>
-        <% end %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
+                    <table class="table v-middle">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Area</th>
+                          <th>Level</th>
+                          <th>Plan</th>
+                          <th>Meeting</th>
+                          <th>Space</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% if @eventsTomorrow.any? %>
+                        <% @eventsTomorrow.each do |event| %>
+                        <tr>
+                          <td>
+                            <% unless event.user.nil? %>
+                            <%= image_tag event.user.image.url(:thumb) %>
+                            <%= event.user.name %>
+                            <% end %>
+                          </td>
+                          <td><%= event.area %></td>
+                          <td><%= event.level %></td>
+                          <td><%= event.plan %></td>
+                          <td><%= event.meeting.strftime('%H:%M') %></td>
+                          <td><%= event.space %></td>
+                          <td><% if event.user != current_user && event.space != 0 && user_signed_in? %>
+                              <% unless event.attendees.include?(current_user) %>
+                            <%= link_to "Join", attending_event_path(event, type: "attending"), class: "btn btn-primary btn-xs", method: :put %>
+                            <% end %>
+                            <% end %></td>
+                        </tr>
+                        <% end %>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<table class="table v-middle">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Area</th>
-      <th>Level</th>
-      <th>Plan</th>
-      <th>Meeting</th>
-      <th>Space</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @eventsTomorrow.any? %>
-    <% @eventsTomorrow.each do |event| %>
-    <tr>
-      <td>
-        <% unless event.user.nil? %>
-        <%= image_tag event.user.image.url(:thumb) %>
-        <%= event.user.name %>
-        <% end %>
-      </td>
-      <td><%= event.area %></td>
-      <td><%= event.level %></td>
-      <td><%= event.plan %></td>
-      <td><%= event.meeting.strftime('%H:%M') %></td>
-      <td><%= event.space %></td>
-      <td><% if event.user != current_user %>
-        <%= link_to "Join", edit_event_path(event) %>
-        <% end %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
+
+
