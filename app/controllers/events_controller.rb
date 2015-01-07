@@ -5,9 +5,9 @@ class EventsController < ApplicationController
     @eventsToday = []
     @eventsTomorrow = []
     @events.each do |event|
-      if event.day == 'Today'
+      if event.day == Date.today.to_s
         @eventsToday << event
-      else
+      elsif event.day == (Date.today+1).to_s
         @eventsTomorrow << event
       end
     end
@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     @event.save
-    redirect_to '/'
+    redirect_to :controller => 'events', :action => 'index'
   end
 
   def edit

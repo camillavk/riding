@@ -3,7 +3,7 @@
 
             <%= f.label :day, "When are you riding?", class: "col-sm-3 control-label" %>
 
-              <%= f.select :day, options_for_select([['Today', 'Today'],['Tomorrow', 'Tomorrow']]), :data => { :style => "btn-white", :size => "5" } %>
+              <%= f.select :day, options_for_select([['Today', Date.today.to_s],['Tomorrow', (Date.today+1).to_s]]), :data => { :style => "btn-white", :size => "5" } %>
 
             <%= f.label :area, "Where are you riding?", class: "col-sm-3 control-label" %>
 
