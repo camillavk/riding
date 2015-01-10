@@ -10,12 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require scripts
 //= require vendor
-//= require jquery
-//= require jquery_ujs
+//= require scripts
 //= require turbolinks
-//= require_tree .
+//= require jquery_ujs
+
 
 $(document).ready(function() {
 

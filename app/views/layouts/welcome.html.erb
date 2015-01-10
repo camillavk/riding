@@ -1,12 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l2" lang="en">
 <head>
   <title>RidingToday</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
+
+<div class="title">
+	<h1><span>RidingToday</span></h1>
+</div>
+<br />
+<div class="welcome">
+	<p><span>Join RidingToday to find out who is going to go out today and tomorrow, where they are going to meet,</span></p>
+	<p><span>what level they are going to be riding at and what their plans are.</span></p>
+</div>
+
+<div class="container clearfix">
+  <div class="primary">
+    <h2><span>Already a member?</span></h2>
+    <% if !user_signed_in? %>
+    <h2><span><%= link_to "Sign in", new_user_session_path, class: "btn navbar-btn btn-primary" %></span></h2>
+    <h2><span><%= link_to "<i class='fa fa-2x fa-facebook'></i>Sign in with Facebook".html_safe, user_omniauth_authorize_path(:facebook), class: "btn btn-info btn-icon-stacked" %></span></h2>
+    <% end %>
+ 
+  </div>
+  <div class="secondary">
+    <h2><span>Join and go riding today!</span></h2>
+    <div class="form">
+    
+    	
+    	    <div class="container-fluid">
+    	        <div class="panel panel-default">
+    	            <div class="panel-body">
+    	            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    	              <%= devise_error_messages! %>
+
+    	              <div class="form-group">
+    	                <%= f.label :name, "Name", class: "col-sm-3 control-label"  %>
+    	                <div class="col-sm-9">
+    	                  <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+    	                </div>
+    	              </div>
+    	              <br />
+    	              <div class="form-group">
+    	                <%= f.label :email, "Email", class: "col-sm-3 control-label" %>
+    	                <div class="col-sm-9">
+    	                  <%= f.email_field :email, class: "form-control", autofocus: true, placeholder: "Email" %>
+    	                </div>
+    	              </div>
+    	              <br />
+    	              <div class="form-group">
+    	                <%= f.label :password, "Password", class: "col-sm-3 control-label" %>
+    	                <% if @validatable %>
+    	                <em>(<%= @minimum_password_length %> characters minimum)</em>
+    	                <% end %>
+    	                <div class="col-sm-9">
+    	                  <%= f.password_field :password, class: "form-control", autocomplete: "off", placeholder: "At least 8 characters..." %>
+    	                </div>
+    	              </div>
+    	              <br />
+    	              <div class="form-group">
+    	                <%= f.label :password_confirmation, "Password Confirmation", class: "col-sm-3 control-label" %>
+    	                <div class="col-sm-9">
+    	                  <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+    	                </div>
+    	              </div>
+    	              <br />
+    	              <div class="form-group">
+    	                <div class="col-sm-offset-3 col-sm-9">
+    	                  <%= f.submit "Sign up", class: "btn btn-primary" %>
+    	                </div>
+    	              </div>
+    	            <% end %>
+
+    	    
+    	          </div>
+    	    
+    	      </div>
+    	  
+    	  </div>
+    	</div>
+    </div>
+ 
+  </div>
+</div><!-- /.container -->
 
 </body>
 </html>
