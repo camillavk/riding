@@ -16,18 +16,3 @@
 //= require jquery_ujs
 
 
-$(document).ready(function() {
-
-	$('.tomorrow').hide();
-
-	$('#today').click(function() {
-		$('.today').show();
-		$('.tomorrow').hide();
-	});
-
-	$('#tomorrow').click(function() {
-		$('.tomorrow').show();
-		$('.today').hide();
-	});
-
-});
