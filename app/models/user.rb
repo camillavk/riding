@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
              user.password = Devise.friendly_token[0,20]
              # Need to add name and image to user model in devise first;
              user.name = auth.info.name
-             user.image = access_token.info.image
+             user.image = auth.info.image
            end
          end
 
