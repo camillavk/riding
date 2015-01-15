@@ -39,10 +39,10 @@
                       <% @eventsToday.each do |event| %>
                       <tr>
                         <td>
-                          <% unless event.user.nil? %>
+
                           <%= image_tag event.user.image.url(:thumb) %>
                           <%= event.user.name %>
-                          <% end %>
+                          
                         </td>
                         <td><%= event.area %></td>
                         <td><%= event.level %></td>
