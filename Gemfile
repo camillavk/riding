@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails_12factor', group: :production
+
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
