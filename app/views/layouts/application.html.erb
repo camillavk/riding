@@ -67,6 +67,12 @@
                                   </li>
                               </ul>
                           </li>
+                          <li>
+                            <% if user_signed_in? %>
+                              <%= link_to "<i class='icon-user-1'></i>Edit Profile".html_safe, edit_user_registration_path(current_user) %>
+                            <% end %>
+
+                          </li>
                           <li class=""><a href="/events"></a>
                           </li>
                           <li class=""><a href="/events"></a>
