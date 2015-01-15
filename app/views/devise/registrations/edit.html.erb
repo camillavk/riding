@@ -1,24 +1,58 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="st-pusher" id="content">
+  <div class="st-content-inner">
+    <div class="container-fluid">
+      <div id="login">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "form-horizontal" }) do |f| %>
+              <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+                <div class="form-group">
+                  <%= f.label :level, "Level", class: "col-sm-3 control-label" %>
+                  <div class="col-sm-9">
+                    <div class="checkbox">
+                      <%= f.radio_button :level, "Beginner" %> Beginner (Greens and Blues)
+                      <br />
+                      <%= f.radio_button :level, "Intermediate" %> Intermediate (Reds)
+                      <br />
+                      <%= f.radio_button :level, "Advanced" %> Advanced (Blacks)
+                      <br />
+                      <%= f.radio_button :level, "Nuts" %> Nuts (Anywhere with Snow)
+                    </div>
+                  </div>
+                </div>
 
-  <div class="field">
-    <%= f.label :level %><br />
-    <%= f.text_field :level %>
+                <div class="form-group">
+                  <%= f.label :choice, "Preference", class: "col-sm-3 control-label" %>
+                  <div class="col-sm-9">
+                    <div class="checkbox">
+                      <%= f.radio_button :choice, "Snowboard" %> Snowboard
+                      <br />
+                      <%= f.radio_button :choice, "Ski" %> Ski
+                      <br />
+                      <%= f.radio_button :choice, "Both" %> Both
+                      <br />
+                    </div>
+                  </div>
+                </div>
+
+              <div class="form-group">
+                <%= f.label :number, "Number", class: "col-sm-3 control-label" %>
+                <div class="col-sm-9">
+                  <%= f.number_field :number %>
+                </div>
+                <p>We will only ever send your number to <br />leaders of events that you have asked to join</p>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                <%= f.submit "Continue to RidingToday", class: "btn btn-primary" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :choice %><br />
-    <%= f.text_field :choice %>
-  </div>
-
-  <div class="field">
-    <%= f.label :number %><br />
-    <%= f.number_field :number %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+</div>

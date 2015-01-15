@@ -23,14 +23,16 @@ $(document).ready(function() {
 		e.preventDefault();
 		$('.today').show();
 		$('.tomorrow').hide();
+		$('#tab-today').addClass('active');
+		$('#tab-tomorrow').removeClass('active');
 	});
 
 	$('#tomorrow').click(function(e) {
 		e.preventDefault();
 		$('.tomorrow').show();
 		$('.today').hide();
+		$('#tab-tomorrow').addClass('active');
+		$('#tab-today').removeClass('active');
 	});
 
 });
-
-
