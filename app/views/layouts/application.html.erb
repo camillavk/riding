@@ -18,9 +18,6 @@
                       <a href="#sidebar-menu" data-effect="st-effect-1" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
                       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
                           <span class="sr-only">Toggle navigation</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
                       </button>
                       <a href="#sidebar-chat" data-toggle="sidebar-menu" data-effect="st-effect-1" class="toggle pull-right visible-xs"><i class="fa fa-comments"></i></a>
                       <a class="navbar-brand navbar-brand-primary hidden-xs" href="/events">RidingToday</a>
@@ -28,13 +25,11 @@
                   <div class="collapse navbar-collapse" id="main-nav">
                       <ul class="nav navbar-nav navbar-user">
                           <!-- User -->
-                          <li>
-                              <a href="/events">
-                                  <% if user_signed_in? %>
-                                    <%= image_tag current_user.image.url(:thumb) %>
-                                    <%= current_user.name %>
-                                  <% end %>
-                              </a>
+                          <li class='user'>
+                            <% if user_signed_in? %>
+                              <%= image_tag current_user.image.url(:thumb), :class => "image" %>
+                              <%= link_to "#{current_user.name}", edit_user_registration_path(current_user), class: "name" %>
+                            <% end %>
                           </li>
                       </ul>
                       <ul class="nav navbar-nav navbar-right hidden-xs">

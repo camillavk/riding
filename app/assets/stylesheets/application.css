@@ -15,11 +15,26 @@
  */
 
 #login {
-  width: 30%;
+  width: 50%;
   margin-left: 300px;
 }
 
 #signup {
   width: 50%;
   margin-left: 200px;
+}
+
+.user {
+  width: 160px;
+}
+
+.user img {
+  margin-right: 0px;
+  float: left;
+  height: 50px;
+}
+
+.name {
+  margin-top: 0px;
+  float: right;
 }
