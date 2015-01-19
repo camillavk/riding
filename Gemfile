@@ -51,6 +51,8 @@ gem 'omniauth-facebook'
 gem 'paperclip'
 gem 'aws-sdk'
 
+gem 'gravtastic'
+
 gem 'mandrill-api'
 
 gem 'figaro'

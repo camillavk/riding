@@ -27,7 +27,11 @@
                           <!-- User -->
                           <li class='user'>
                             <% if user_signed_in? %>
-                              <%= image_tag current_user.image.url(:thumb), :class => "image" %>
+                              <% if current_user.image? %>
+                                <%= image_tag current_user.image.url(:thumb) %>
+                              <% else %>
+                                <%= image_tag current_user.gravatar_url %>
+                              <% end %>
                               <%= link_to "#{current_user.name}", edit_user_registration_path(current_user), class: "name" %>
                             <% end %>
                           </li>
