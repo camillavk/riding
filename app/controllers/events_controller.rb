@@ -35,7 +35,7 @@ class EventsController < ApplicationController
       current_user.attending << @event
       @event.space = @event.space - 1
       @event.save
-      AdminMailer.new_attending(@event.user, current_user)
+      AdminMailer.new_attending(@event.user, current_user).deliver_now
       redirect_to :back, notice: "You've joined the group. Your number will be sent to #{@event.user.name}"
 
     else type == "unattending"
